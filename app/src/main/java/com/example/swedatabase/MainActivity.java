@@ -15,6 +15,12 @@ public class MainActivity extends AppCompatActivity {
     EditText title , date ,time,location,type,des;
 
     Database db=new Database( this );
+
+
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,12 +28,12 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        title= findViewById(R.id.title);
-        date= findViewById(R.id.date);
-        time= findViewById(R.id.time);
-        location= findViewById(R.id.location);
-        type= findViewById(R.id.type);
-        des= findViewById(R.id.des);
+        title= (EditText) findViewById(R.id.title);
+        date= (EditText)findViewById(R.id.date);
+        time= (EditText)findViewById(R.id.time);
+        location=(EditText) findViewById(R.id.location);
+        type= (EditText)findViewById(R.id.type);
+        des= (EditText)findViewById(R.id.des);
 
         add=findViewById(R.id.add);
 
@@ -36,6 +42,21 @@ public class MainActivity extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if (title.length()==0)
+                   title.setError("Enter title") ;
+                else if (date.length()==0)
+                    date.setError("Enter date") ;
+                else if (time.length()==0)
+                    time.setError("Enter time") ;
+                else if (location.length()==0)
+                    location.setError("Enter location") ;
+                else if (type.length()==0)
+                    type.setError("Enter type") ;
+                else if (des.length()==0)
+                    des.setError("Enter description") ;
+
+
                 Event Event1;
                 Database db;
                 try {
@@ -52,7 +73,12 @@ public class MainActivity extends AppCompatActivity {
                 db = new Database(MainActivity.this);
 
                 boolean success = db.addEvent(Event1);
-                Toast.makeText(MainActivity.this, success+" Event added successfully  ", Toast.LENGTH_SHORT).show();
+                if(success)
+                Toast.makeText(MainActivity.this, success+" [The event was added successfully]", Toast.LENGTH_SHORT).show();
+                else{
+                    Toast.makeText(MainActivity.this, success+" [The event was not added successfully]", Toast.LENGTH_SHORT).show();
+                }
+
 
             }
     });

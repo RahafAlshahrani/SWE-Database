@@ -12,6 +12,19 @@ private int time;
 private String location;
 private String eventType;
 private String description;
+private String Coordinator_id;
+
+    public Event(String title, int date, int time, String location, String eventType, String description, String coordinator_id) {
+        this.title = title;
+        this.date = date;
+        this.time = time;
+        this.location = location;
+        this.eventType = eventType;
+        this.description = description;
+        this.Coordinator_id = coordinator_id;
+    }
+
+
 
     public Event(String title, int date, int time, String location, String eventType, String description) {
         this.title = title;
@@ -54,6 +67,14 @@ private String description;
 
     public String getDescription() {
         return description;
+    }
+
+    public String getCoordinator_id() {
+        return Coordinator_id;
+    }
+
+    public void setCoordinator_id(String coordinator_id) {
+        Coordinator_id = coordinator_id;
     }
 
     public void setTitle(String title) {
